@@ -181,7 +181,6 @@ class ThrowerAnt(Ant):
     damage = 1
     # ADD/OVERRIDE CLASS ATTRIBUTES HERE
     food_cost = 3
-    food_cost = 69
 
     def nearest_bee(self):
         """Return the nearest Bee in a Place that is not the HIVE, connected to
