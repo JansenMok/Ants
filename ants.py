@@ -213,13 +213,18 @@ class ThrowerAnt(Ant):
 
         # attempt 2
         cursor = self.place
-        if self.upper_bound < float('inf'):
-            for i in range(self.upper_bound):
-                cursor = cursor.entrance
+        if self.lower_bound > 0:
+            for i in range(self.lower_bound):
+                if cursor.entrance != None:
+                    cursor = cursor.entrance
 
-        while self.lower_bound <= self.place_counter <= self.upper_bound and \
-            not cursor.entrance.is_hive and cursor.bees == []:
+        temp_cursor_index = 0
+        while self.lower_bound <= self.place_counter < self.upper_bound and not cursor.entrance.is_hive and cursor.bees == []:
+            # print(f'self.place_counter: {self.place_counter}')
+            # print(f'self.upper_bound: {self.upper_bound}')
+            # print()
             cursor = cursor.entrance
+            temp_cursor_index += 1
             self.place_counter += 1
         if cursor.bees != []:
             return random_bee(cursor.bees)
@@ -254,7 +259,7 @@ class ShortThrower(ThrowerAnt):
     name = 'Short'
     food_cost = 2
     # OVERRIDE CLASS ATTRIBUTES HERE
-    upper_bound = 2
+    upper_bound = 3
     # BEGIN Problem 4
     implemented = True   # Change to True to view in the GUI
     # END Problem 4
