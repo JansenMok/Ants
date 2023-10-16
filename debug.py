@@ -13,15 +13,15 @@
 
 
 
-from ants import *
-beehive, layout = Hive(AssaultPlan()), dry_layout
-dimensions = (1, 9)
-gamestate = GameState(None, beehive, ant_types(), layout, dimensions)
-#
-# Testing fire does damage to all Bees in its Place
-place = gamestate.places['tunnel_0_4']
-fire = FireAnt(health=1)
-place.add_insect(fire)        # Add a FireAnt with 1 health
-place.add_insect(Bee(3))      # Add a Bee with 3 health
-place.add_insect(Bee(5))      # Add a Bee with 5 health
-place.bees[0].action(gamestate)  # The first Bee attacks FireAnt
+# from ants import *
+# beehive, layout = Hive(AssaultPlan()), dry_layout
+# dimensions = (1, 9)
+# gamestate = GameState(None, beehive, ant_types(), layout, dimensions)
+# #
+# # Testing fire does damage to all Bees in its Place
+# place = gamestate.places['tunnel_0_4']
+# fire = FireAnt(health=1)
+# place.add_insect(fire)        # Add a FireAnt with 1 health
+# place.add_insect(Bee(3))      # Add a Bee with 3 health
+# place.add_insect(Bee(5))      # Add a Bee with 5 health
+# place.bees[0].action(gamestate)  # The first Bee attacks FireAnt
