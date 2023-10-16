@@ -220,9 +220,6 @@ class ThrowerAnt(Ant):
 
         temp_cursor_index = 0
         while self.lower_bound <= self.place_counter < self.upper_bound and not cursor.entrance.is_hive and cursor.bees == []:
-            # print(f'self.place_counter: {self.place_counter}')
-            # print(f'self.upper_bound: {self.upper_bound}')
-            # print()
             cursor = cursor.entrance
             temp_cursor_index += 1
             self.place_counter += 1
@@ -285,7 +282,7 @@ class FireAnt(Ant):
     food_cost = 5
     # OVERRIDE CLASS ATTRIBUTES HERE
     # BEGIN Problem 5
-    implemented = False   # Change to True to view in the GUI
+    implemented = True   # Change to True to view in the GUI
     # END Problem 5
 
     def __init__(self, health=3):
@@ -301,6 +298,17 @@ class FireAnt(Ant):
         """
         # BEGIN Problem 5
         "*** YOUR CODE HERE ***"
+        if self.health - amount <= 0:
+            current_place = [*self.place.bees]      # copy of bees list
+            for bee in current_place:
+                bee.reduce_health(amount + self.damage)
+            # self.place.bees = current_place
+        else:
+            current_place = [*self.place.bees]
+            for bee in self.place.bees:
+                bee.reduce_health(amount)
+            # self.place.bees = current_place
+        super().reduce_health(amount)
         # END Problem 5
 
 # BEGIN Problem 6
