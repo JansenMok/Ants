@@ -25,3 +25,53 @@
 # place.add_insect(Bee(3))      # Add a Bee with 3 health
 # place.add_insect(Bee(5))      # Add a Bee with 5 health
 # place.bees[0].action(gamestate)  # The first Bee attacks FireAnt
+
+
+# from ants import *
+# beehive, layout = Hive(AssaultPlan()), dry_layout
+# dimensions = (1, 9)
+# gamestate = GameState(None, beehive, ant_types(), layout, dimensions)
+# #
+# # Testing HungryAnt eats and chews
+# hungry = HungryAnt()
+# bee1 = Bee(1000)              # A Bee with 1000 health
+# place = gamestate.places["tunnel_0_0"]
+# place.add_insect(hungry)
+# place.add_insect(bee1)         # Add the Bee to the same place as HungryAnt
+# hungry.action(gamestate)
+# bee1.health
+
+# bee2 = Bee(1)                 # A Bee with 1 health
+# place.add_insect(bee2)
+# for _ in range(3):
+#     hungry.action(gamestate)     # Digesting...not eating
+
+
+
+# from ants import *
+# beehive, layout = Hive(AssaultPlan()), dry_layout
+# dimensions = (1, 9)
+# gamestate = GameState(None, beehive, ant_types(), layout, dimensions)
+# #
+# # Testing HungryAnt only waits when chewing
+# hungry = HungryAnt()
+# place = gamestate.places["tunnel_0_0"]
+# place.add_insect(hungry)
+# # Wait a few turns before adding Bee
+# for _ in range(5):
+#     hungry.action(gamestate)  # shouldn't be chewing
+
+
+from ants import *
+beehive, layout = Hive(AssaultPlan()), dry_layout
+dimensions = (1, 9)
+gamestate = GameState(None, beehive, ant_types(), layout, dimensions)
+#
+# Testing HungryAnt eats and chews
+hungry = HungryAnt()
+bee1 = Bee(1000)              # A Bee with 1000 health
+place = gamestate.places["tunnel_0_0"]
+place.add_insect(hungry)
+place.add_insect(bee1)         # Add the Bee to the same place as HungryAnt
+hungry.action(gamestate)
+bee1.health
