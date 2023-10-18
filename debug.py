@@ -95,18 +95,18 @@
 
 
 
-from ants import *
-beehive, layout = Hive(AssaultPlan()), dry_layout
-gamestate = GameState(None, beehive, ant_types(), layout, (1, 9))
-#
-# Testing single BodyguardAnt cannot hold two other ants
-bodyguard = BodyguardAnt()
-first_ant = ThrowerAnt()
-place = gamestate.places['tunnel_0_0']
-place.add_insect(bodyguard)
-place.add_insect(first_ant)
-second_ant = ThrowerAnt()
-place.add_insect(second_ant)
+# from ants import *
+# beehive, layout = Hive(AssaultPlan()), dry_layout
+# gamestate = GameState(None, beehive, ant_types(), layout, (1, 9))
+# #
+# # Testing single BodyguardAnt cannot hold two other ants
+# bodyguard = BodyguardAnt()
+# first_ant = ThrowerAnt()
+# place = gamestate.places['tunnel_0_0']
+# place.add_insect(bodyguard)
+# place.add_insect(first_ant)
+# second_ant = ThrowerAnt()
+# place.add_insect(second_ant)
 
 # assert place.ant.ant_contained is None
 
@@ -124,3 +124,21 @@ place.add_insect(second_ant)
 # # Place bodyguard before thrower
 # gamestate.places["tunnel_0_0"].add_insect(bodyguard)
 # gamestate.places["tunnel_0_0"].add_insect(thrower)
+
+
+
+
+from ants_plans import *
+from ants import *
+beehive, layout = Hive(make_test_assault_plan()), dry_layout
+dimensions = (1, 9)
+gamestate = GameState(None, beehive, ant_types(), layout, dimensions)
+#
+# Testing TankAnt action
+tank = TankAnt()
+place = gamestate.places['tunnel_0_1']
+place.add_insect(tank)
+for _ in range(3):  # Add three bees with 1 health each
+    place.add_insect(Bee(1))
+tank.action(gamestate)
+len(place.bees)  # Bees removed from places because of TankAnt damage
