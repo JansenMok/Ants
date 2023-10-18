@@ -78,16 +78,49 @@
 
 
 
+# from ants import *
+# beehive, layout = Hive(AssaultPlan()), dry_layout
+# gamestate = GameState(None, beehive, ant_types(), layout, (1, 9))
+# #
+# # Any Container Ant can be added after another ant
+# container = ContainerAnt()
+# other_ant = ThrowerAnt()
+# place = gamestate.places['tunnel_0_0']
+# place.add_insect(other_ant)  # Other ant in place first
+# place.ant is other_ant
+
+# place.add_insect(container)
+# place.ant is container
+
+
+
+
 from ants import *
 beehive, layout = Hive(AssaultPlan()), dry_layout
 gamestate = GameState(None, beehive, ant_types(), layout, (1, 9))
 #
-# Any Container Ant can be added after another ant
-container = ContainerAnt()
-other_ant = ThrowerAnt()
+# Testing single BodyguardAnt cannot hold two other ants
+bodyguard = BodyguardAnt()
+first_ant = ThrowerAnt()
 place = gamestate.places['tunnel_0_0']
-place.add_insect(other_ant)  # Other ant in place first
-place.ant is other_ant
+place.add_insect(bodyguard)
+place.add_insect(first_ant)
+second_ant = ThrowerAnt()
+place.add_insect(second_ant)
 
-place.add_insect(container)
-place.ant is container
+# assert place.ant.ant_contained is None
+
+
+
+
+# from ants import *
+# beehive, layout = Hive(AssaultPlan()), dry_layout
+# gamestate = GameState(None, beehive, ant_types(), layout, (1, 9))
+# #
+# # Testing bodyguard performs thrower's action
+# bodyguard = BodyguardAnt()
+# thrower = ThrowerAnt()
+# bee = Bee(2)
+# # Place bodyguard before thrower
+# gamestate.places["tunnel_0_0"].add_insect(bodyguard)
+# gamestate.places["tunnel_0_0"].add_insect(thrower)
