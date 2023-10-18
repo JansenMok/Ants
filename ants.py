@@ -139,7 +139,11 @@ class Ant(Insect):
             elif self.can_contain(place.ant):
                 self.store_ant(place.ant)
                 place.ant = self
+            else:
+                assert False, 'Two ants in {0}'.format(place)
             # assert place.ant is None, 'Two ants in {0}'.format(place)
+            # print(f'ant_contained: {place.ant.ant_contained}')
+            # assert place.ant.ant_contained is None, 'Two ants in {0}'.format(place)
             # END Problem 8b
         Insect.add_to(self, place)
 
@@ -408,7 +412,9 @@ class BodyguardAnt(ContainerAnt):
     food_cost = 4
     # OVERRIDE CLASS ATTRIBUTES HERE
     # BEGIN Problem 8c
-    implemented = False   # Change to True to view in the GUI
+    implemented = True   # Change to True to view in the GUI
+    def __init__(self, health=2):
+        super().__init__(health)
     # END Problem 8c
 
 # BEGIN Problem 9
